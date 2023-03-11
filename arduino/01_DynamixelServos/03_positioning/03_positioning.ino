@@ -5,8 +5,8 @@
 #define DEBUG_SERIAL Serial
 const int DXL_DIR_PIN = 84; // OpenCR Board's DIR PIN.
 
-#define N_DXL 2
-const uint8_t DXL_IDs[N_DXL] = {4, 8};
+#define N_DXL 4
+uint8_t DXL_IDs[N_DXL];
 const float DXL_PROTOCOL_VERSION = 2.0;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
@@ -15,6 +15,9 @@ Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 using namespace ControlTableItem;
 
 void setup() {
+  for(int i = 0; i < N_DXL; i++)
+    DXL_IDs[i] = i + 5;
+
   // Use UART port of DYNAMIXEL Shield to debug.
   DEBUG_SERIAL.begin(115200);
   while(!DEBUG_SERIAL);
@@ -36,23 +39,25 @@ void setup() {
 }
 
 #define N_goals 3
-const float goals[N_goals] = {200, 250, 130};
+const float goals[N_goals] = {200, 230, 130};
+
+const float tol = 1.0;
 
 void loop() {
   for(int i = 0; i < N_goals; i++){
     for(int j = 0; j < N_DXL; j++){
       const float goal = goals[i];
-      float position = 0.0;
 
       dxl.setGoalPosition(DXL_IDs[j], goal, UNIT_DEGREE);
 
-      while(abs(goal - position) > 2.0){
+      delay(5000);
+      /*
+      while(abs(goal - position) > tol){
         position = dxl.getPresentPosition(DXL_IDs[j], UNIT_DEGREE);
         DEBUG_SERIAL.print("Present_Position(degree) : ");
         DEBUG_SERIAL.println(position);
       }
-
-      delay(1000);      
+      */     
     }
   }
 }

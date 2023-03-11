@@ -53,7 +53,7 @@
 #endif
  
 
-const uint8_t DXL_ID = 4;
+const uint8_t DXL_ID = 6;
 const float DXL_PROTOCOL_VERSION = 2.0;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);

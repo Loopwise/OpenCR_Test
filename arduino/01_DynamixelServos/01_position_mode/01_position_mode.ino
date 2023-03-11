@@ -53,7 +53,7 @@
 #endif
  
 
-const uint8_t DXL_ID = 4;
+const uint8_t DXL_ID = 6;
 const float DXL_PROTOCOL_VERSION = 2.0;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
@@ -81,7 +81,9 @@ void setup() {
   dxl.torqueOn(DXL_ID);
 
   // Limit the maximum velocity in Position Control Mode. Use 0 for Max speed
-  dxl.writeControlTableItem(PROFILE_VELOCITY, DXL_ID, 30);
+  dxl.writeControlTableItem(PROFILE_VELOCITY, DXL_ID, 0);
+  dxl.writeControlTableItem(MIN_POSITION_LIMIT, DXL_ID, 0);
+  dxl.writeControlTableItem(MAX_POSITION_LIMIT, DXL_ID, 4095);
 }
 
 void loop() {
