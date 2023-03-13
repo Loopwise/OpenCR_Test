@@ -7,6 +7,8 @@
 #include <Dynamixel2Arduino.h>
 
 // Macros Definition
+template<class T> inline Print &operator <<(Print &obj, T arg) { obj.print(arg); return obj; }
+
 #define DXL_SERIAL Serial3
 #define DEBUG_SERIAL Serial
 const int DXL_DIR_PIN = 84;
@@ -17,8 +19,8 @@ extern Dynamixel2Arduino dxl;
 #define N_Legs 4
 extern const uint8_t Vel_ids[N_Legs];
 extern const uint8_t Pos_ids[N_Legs];
-extern const uint8_t min_pos[N_Legs];
-extern const uint8_t max_pos[N_Legs];
+extern const uint16_t min_pos[N_Legs];
+extern const uint16_t max_pos[N_Legs];
 
 #ifndef t1
 #define t1 100

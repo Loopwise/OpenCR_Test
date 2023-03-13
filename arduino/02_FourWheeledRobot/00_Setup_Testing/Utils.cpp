@@ -3,8 +3,8 @@
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 const uint8_t Vel_ids[N_Legs] = {1, 2, 3, 4};
 const uint8_t Pos_ids[N_Legs] = {5, 6, 7, 8};
-const uint8_t min_pos[N_Legs] = {90, 114, 98, 99};
-const uint8_t max_pos[N_Legs] = {247, 262, 263, 260};
+const uint16_t min_pos[N_Legs] = {95, 114, 98, 99};
+const uint16_t max_pos[N_Legs] = {247, 262, 263, 260};
 
 using namespace ControlTableItem;
 
