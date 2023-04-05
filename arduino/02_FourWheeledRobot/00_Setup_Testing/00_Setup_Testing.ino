@@ -8,7 +8,7 @@ using namespace ControlTableItem;
 
 void getPositions();
 void LimitsTest();
-void SerialAngles();
+void SerialAngles();  
 void OneLimitsTest();
 
 void setup() {
